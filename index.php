@@ -68,6 +68,12 @@ header("Content-type: text/html; charset=utf-8");
 <head>
 <title>ᗞᗩᐯIᗞ ᕫᕮᕮKᒪᖻ'ᔕ ᖴᑌN ᖴ〇NTIᖴIᕮᖇ</title>
 <link rel="canonical" href="http://fonts.dweek.ly/" />
+<script type="text/javascript">
+function foc(){
+  document.getElementById("tid").focus();
+}
+onload = foc;
+</script>
 </head>
 <body>
 
@@ -86,7 +92,7 @@ header("Content-type: text/html; charset=utf-8");
 
 <?=$newstr?>
 <form method="post">
-<input name="t" size="40" value="Tᕮ᙭T ᖻ〇ᑌ ᕫᗩNT ᖴ〇NTIᖴIᕮᗞ" />
+<input id="tid" name="t" size="40" placeholder="Tᕮ᙭T ᖻ〇ᑌ ᕫᗩNT ᖴ〇NTIᖴIᕮᗞ" />
 <input type="submit" value="G〇!" />
 </form>
 <br /><br />

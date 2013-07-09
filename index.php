@@ -50,8 +50,6 @@ $xlate = [
   return $ch;
 }
 
-//die($xlate[A]);
-
 function x($str) {
  $charr = str_split($str);
  $xlate_arr = array_map("f", $charr);
@@ -72,6 +70,8 @@ header("Content-type: text/html; charset=utf-8");
 <link rel="canonical" href="http://fonts.dweek.ly/" />
 </head>
 <body>
+
+<a href="https://github.com/dweekly/fontifier"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

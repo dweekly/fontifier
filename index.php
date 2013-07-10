@@ -1,64 +1,22 @@
-<?
+<?php
 
-mb_internal_encoding('UTF-8');
-mb_http_output('UTF-8');
-mb_http_input('UTF-8');
-mb_language('uni');
-mb_regex_encoding('UTF-8');
-ob_start('mb_output_handler');
+require_once 'bootstrap.php';
+
+// Build the options for the select menu.
+$options = buildMenuOptions();
 
 if($_SERVER['HTTP_HOST'] == '54.215.13.242'){
-   header("HTTP/1.1 301 Moved Permanently"); 
+   header("HTTP/1.1 301 Moved Permanently");
    header("Location: http://fonts.dweek.ly/");
    die('go to <a href="http://fonts.dweek.ly/">fonts.dweek.ly</a> instead of the IP URL, plz.');
 }
 
-
-function f($ch) {
-$xlate = [
-"A" => "ᗩ",
-"B" => "ᗷ", // ᙖ ᙘ ᙗ ᙝ ᙞ ᙟ ᙩ ᙪ ᙫ ᗷ ᗸ ᗹ ᗽ ᗾ ᗿ 
-"C" => "ᑕ",
-"D" => "ᗞ",
-"E" => "ᕮ",
-"F" => "ᖴ",
-"G" => "G",
-"H" => "ᕼ",
-"I" => "I",
-"J" => "ᒍ",
-"K" => "K",
-"L" => "ᒪ",
-"M" => "ᙢ", // ᔿ
-"N" => "N",
-"O" => "〇",
-"P" => "ᖘ",
-"Q" => "ᖗ",
-"R" => "ᖇ",
-"S" => "ᔕ", // ᙚ
-"T" => "T",
-"U" => "ᑌ",
-"V" => "ᐯ",
-"W" => "ᕫ",
-"X" => "᙭",
-"Y" => "ᖻ",
-"Z" => "ᙆ", // ᙆ
-];
-
-  if(isset($xlate[$ch])){
-    return $xlate[$ch];
-  }
-  return $ch;
-}
-
-function x($str) {
- $charr = str_split($str);
- $xlate_arr = array_map("f", $charr);
- return implode($xlate_arr);
-}
-
 $newstr = "";
-if(isset($_POST['t'])) {
-  $newstr = x(strtoupper($_POST['t']));
+
+if (isset($_POST['t'])) {
+    $fontClass = $_POST['f'] ?: 'DefaultFont';
+    $font = new $fontClass;
+    $newstr = $font->translate($_POST['t']);
 }
 
 header("Content-type: text/html; charset=utf-8");
@@ -92,6 +50,14 @@ onload = foc;
 
 <?=$newstr?>
 <form method="post">
+<select id="fid" name="f">
+    <?php
+    foreach ($options as $k => $v) {
+        echo '<option ' . ($_POST['f'] == $k ? 'selected="selected"' : '') . 'value="' . $k . '">' . $v . '</option>';
+    }
+    ?>
+</select>
+<br />
 <input id="tid" name="t" size="40" placeholder="Tᕮ᙭T ᖻ〇ᑌ ᕫᗩNT ᖴ〇NTIᖴIᕮᗞ" />
 <input type="submit" value="G〇!" />
 </form>

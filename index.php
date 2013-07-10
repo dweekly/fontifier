@@ -34,12 +34,14 @@ header("Content-type: text/html; charset=utf-8");
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
 BODY { padding: 0.5em 1em 0 1em; }
-#shares { padding-top: 3em; }
+H1 { padding: 0; margin:0 0 0.5em 0; font-size:2.2em; }
+#shares { padding-top: 4em; }
 #shares div { padding-bottom: 1em; padding-top: 1em; }
-#renderedOutput { background-color:#eee; font-size:3em; padding:1em; margin-top:1em; }
-#fontSelector { font-size: 1.2em; }
+#renderedOutput { background-color:#eef; font-size:3em; padding:1em; margin-top:1em; }
+#fontSelector { font-size: 1.1em; }
 #userText { font-size: 1.5em; padding:0.1em 0.2em 0.3em 0.2em; background-color:#ffe; width:70%; max-width:500px; }
 #submit { font-size: 1.5em; }
+#desc { font-size:1em; padding: 0 2em 1em 0; color:#aaa; }
 </style>
 <script type="text/javascript">
 function foc(){
@@ -66,6 +68,10 @@ onload = foc;
 
 <h1 id="title">ᗞᗩᐯIᗞ ᕫᕮᕮKᒪᖻ'ᔕ ᖴᑌN ᖴ〇NTIᖴIᕮᖇ</h1>
 
+<div id="desc">
+  ᕮᐯᕮᖇ ᕫIᔕᕼ ᖻ〇ᑌ ᑕ〇ᑌᒪᗞ ᑌᔕᕮ ᔕIᒪᒪᖻ ᖴ〇NTᔕ 〇N ᖴᗩᑕᕮᗷ〇〇K, 〇ᖇ TᕫITTᕮᖇ? ᕫᕮᒪᒪ, N〇ᕫ ᖻ〇ᑌ ᑕᗩN! ᒍᑌᔕT ᖘIᑕK Tᕼᕮ ᖴ〇NT ᖻ〇ᑌ ᕫᗩNT, Tᖻᖘᕮ Tᕼᕮ Tᕮ᙭T ᗷᕮᒪ〇ᕫ ᗩNᗞ TᕼᕮN ᖘᗩᔕTᕮ Tᕼᕮ ᖇᕮᔕᑌᒪT.
+</div>
+
 <form method="post">
   <select id="fontSelector" name="fontSelector">
     <?php
@@ -78,7 +84,8 @@ onload = foc;
   </select>
   <br />
   <input id="userText" name="userText" size="40" placeholder="Tᕮ᙭T ᖻ〇ᑌ ᕫᗩNT ᖴ〇NTIᖴIᕮᗞ" value="<?=$userText?>" />
-  <input type="submit" value="G〇!" id="submit" />
+  <br />
+  <input type="submit" value="ᖴ〇NTIᖴᖻ!" id="submit" />
 </form>
 
 <?=$renderedOutput?>

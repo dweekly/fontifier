@@ -12,7 +12,7 @@ class EnclosedFont extends AbstractBaseFont
      *
      * @var string
      */
-    protected $name = 'Enclosed';
+    protected $name = 'Enclosed Font';
 
     /**
      * If true, everything is upper-cased before translation.

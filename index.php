@@ -1,31 +1,46 @@
 <?php
 
-require_once 'bootstrap.php';
-
-// Build the options for the select menu.
-$options = buildMenuOptions();
-
-if($_SERVER['HTTP_HOST'] == '54.215.13.242'){
+if($_SERVER['HTTP_HOST'] != 'fonts.dweek.ly'){
    header("HTTP/1.1 301 Moved Permanently");
    header("Location: http://fonts.dweek.ly/");
-   die('go to <a href="http://fonts.dweek.ly/">fonts.dweek.ly</a> instead of the IP URL, plz.');
+   die('go to <a href="http://fonts.dweek.ly/">fonts.dweek.ly</a>, plz.');
 }
 
-$newstr = "";
+require_once 'bootstrap.php';
+$fonts = getFontList();
 
-if (isset($_POST['t'])) {
-    $fontClass = $_POST['f'] ?: 'DefaultFont';
-    $font = new $fontClass;
-    $newstr = $font->translate($_POST['t']);
+$renderedOutput = "";
+$curFont = "BouncyFont"; // default
+$userText = "";
+if (isset($_POST['userText'])) {
+  $userText = $_POST['userText'];
+  $curFont = $_POST['fontSelector'];
+  $fontObj = new $curFont;
+  $renderedOutput =
+    "<div id=\"renderedOutput\">" .
+      $fontObj->translate($userText) .
+    "</div>";
 }
 
 header("Content-type: text/html; charset=utf-8");
+
 
 ?><!doctype html>
 <html>
 <head>
 <title>ᗞᗩᐯIᗞ ᕫᕮᕮKᒪᖻ'ᔕ ᖴᑌN ᖴ〇NTIᖴIᕮᖇ</title>
 <link rel="canonical" href="http://fonts.dweek.ly/" />
+<link type="text/plain" rel="author" href="http://fonts.dweek.ly/humans.txt" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<style>
+BODY { padding: 1em; }
+#shares { padding-top: 3em; }
+#shares div { padding-bottom: 1em; padding-top: 1em; }
+#renderedOutput { background-color:#eee; font-size:3em; padding:1em; margin-top:1em; }
+#fontSelector { font-size: 1.2em; }
+#userText { font-size: 1.5em; padding:0.1em 0.2em 0.3em 0.2em; background-color:#ffe; width:70%; max-width:500px; }
+#submit { font-size: 1.5em; }
+</style>
 <script type="text/javascript">
 function foc(){
   document.getElementById("tid").focus();
@@ -35,8 +50,7 @@ onload = foc;
 </head>
 <body>
 
-<a href="https://github.com/dweekly/fontifier"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
-
+<!-- Load Facebook plugin -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -46,32 +60,46 @@ onload = foc;
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<h1>ᗞᗩᐯIᗞ ᕫᕮᕮKᒪᖻ'ᔕ ᖴᑌN ᖴ〇NTIᖴIᕮᖇ</h1>
+<!-- GitHub swatch -->
+<a href="https://github.com/dweekly/fontifier"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
-<?=$newstr?>
+
+<h1 id="title">ᗞᗩᐯIᗞ ᕫᕮᕮKᒪᖻ'ᔕ ᖴᑌN ᖴ〇NTIᖴIᕮᖇ</h1>
+
 <form method="post">
-<select id="fid" name="f">
+  <select id="fontSelector" name="fontSelector">
     <?php
-    foreach ($options as $k => $v) {
-        echo '<option ' . ($_POST['f'] == $k ? 'selected="selected"' : '') . 'value="' . $k . '">' . $v . '</option>';
-    }
+      foreach ($fonts as $fontID => $sampleText) {
+        echo '<option ' .
+            ($curFont == $fontID ? 'selected="selected"' : '') .
+            'value="' . $fontID . '">' . $sampleText . '</option>';
+      }
     ?>
-</select>
-<br />
-<input id="tid" name="t" size="40" placeholder="Tᕮ᙭T ᖻ〇ᑌ ᕫᗩNT ᖴ〇NTIᖴIᕮᗞ" />
-<input type="submit" value="G〇!" />
+  </select>
+  <br />
+  <input id="userText" name="userText" size="40" placeholder="Tᕮ᙭T ᖻ〇ᑌ ᕫᗩNT ᖴ〇NTIᖴIᕮᗞ" value="<?=$userText?>" />
+  <input type="submit" value="G〇!" id="submit" />
 </form>
-<br /><br />
-<div class="fb-like" data-href="http://fonts.dweek.ly/" data-send="true" data-width="450" data-show-faces="true"></div>
 
-<br />
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="dweekly" data-size="large" data-hashtags="fontify">Tweet</a>
+<?=$renderedOutput?>
+
+
+<!-- social media sharing widgets -->
+<div id="shares">
+  <div class="g-plusone" data-annotation="inline" data-width="300"></div>
+  <br />
+  <a href="https://twitter.com/share" class="twitter-share-button" data-via="dweekly" data-size="large" data-hashtags="fontify">Tweet</a>
+  <br />
+  <div class="fb-like" data-href="http://fonts.dweek.ly/" data-send="true" data-width="450" data-show-faces="true"></div>
+</div>
+
+
+<!-- ----- end of rendered elements; tail javascript below ------ -->
+
+
+<!-- Twitter -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<br />
-<!-- Place this tag where you want the +1 button to render. -->
-<div class="g-plusone" data-annotation="inline" data-width="300"></div>
-
-<!-- Place this tag after the last +1 button tag. -->
+<!-- Google+ -->
 <script type="text/javascript">
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -80,21 +108,18 @@ onload = foc;
   })();
 </script>
 
-
+<!-- Google Analytics -->
 <script type="text/javascript">
-
   var _gaq = _gaq || [];
   var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
   _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
   _gaq.push(['_setAccount', 'UA-27953150-3']);
   _gaq.push(['_trackPageview']);
-
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
 </script>
 
 </body>

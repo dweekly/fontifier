@@ -5,8 +5,7 @@
  *
  * The base class used by all fonts.
  */
-abstract class AbstractBaseFont implements FontInterface
-{
+abstract class AbstractBaseFont implements FontInterface {
     /**
      * Name of the font
      *
@@ -26,7 +25,7 @@ abstract class AbstractBaseFont implements FontInterface
      *
      * @var string
      */
-    protected $sampleText = 'The quick brown fox jumps over the lazy dog';
+    protected $sampleText = 'Sample Text';
 
     /**
      * If true, everything is upper-cased before translation.
@@ -43,8 +42,7 @@ abstract class AbstractBaseFont implements FontInterface
      *
      * @return string
      */
-    public function translate($string)
-    {
+    public function translate($string) {
         $str = $this->upperCaseOnly ? strtoupper($string) : $string;
 
         return implode(array_map([$this, 'fontify'], str_split($str)));
@@ -55,9 +53,17 @@ abstract class AbstractBaseFont implements FontInterface
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
+    }
+
+    /**
+     * Returns a user-friendly name for the font, rendered in the font.
+     *
+     * @return string
+     */
+    public function getRenderedName() {
+        return $this->translate($this->name);
     }
 
     /**
@@ -65,8 +71,7 @@ abstract class AbstractBaseFont implements FontInterface
      *
      * @return string
      */
-    public function getSample()
-    {
+    public function getSample() {
         return $this->translate($this->sampleText);
     }
 
@@ -77,14 +82,11 @@ abstract class AbstractBaseFont implements FontInterface
      *
      * @return string
      */
-    protected function fontify($char)
-    {
+    protected function fontify($char) {
         $rv = $char;
-
         if (array_key_exists($char, $this->charMap)) {
             $rv = $this->charMap[$char];
         }
-
         return $rv;
     }
 }

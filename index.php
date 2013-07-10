@@ -33,7 +33,7 @@ header("Content-type: text/html; charset=utf-8");
 <link type="text/plain" rel="author" href="http://fonts.dweek.ly/humans.txt" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
-BODY { padding: 1em; }
+BODY { padding: 0.5em 1em 0 1em; }
 #shares { padding-top: 3em; }
 #shares div { padding-bottom: 1em; padding-top: 1em; }
 #renderedOutput { background-color:#eee; font-size:3em; padding:1em; margin-top:1em; }

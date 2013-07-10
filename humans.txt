@@ -15,3 +15,5 @@ Location: Redwood City, CA
 Contributor: Jeff McDonald
 GitHub: https://github.com/jkm9000
 
+
+Similar/inspiration: http://www.panix.com/~eli/unicode/convert.cgi?text=ABCDEFGHIJKLMNOPQRSTUVWXYZ

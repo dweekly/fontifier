@@ -1,18 +1,17 @@
 <?php
 
 /**
- * Class DefaultFont
+ * Class BouncyFont
  *
  * The default font from w33kly.
  */
-class DefaultFont extends AbstractBaseFont
-{
+class BouncyFont extends AbstractBaseFont {
     /**
      * Name of the font
      *
      * @var string
      */
-    protected $name = 'Default';
+    protected $name = 'Bouncy Font';
 
     /**
      * charMap

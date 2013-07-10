@@ -1,0 +1,17 @@
+Thanks for checking this fun project out.
+
+It was a half hour project late one night for giggles. :)
+
+GitHub: https://github.com/dweekly/fontifier
+Pull requests accepted: Hell Yes
+Technology: PHP, Unicode
+Hacker News: https://news.ycombinator.com/item?id=6014006
+
+Lead: David E. Weekly
+Email: david@weekly.org
+Twitter: @dweekly
+Location: Redwood City, CA
+
+Contributor: Jeff McDonald
+GitHub: https://github.com/jkm9000
+

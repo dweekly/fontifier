@@ -45,7 +45,7 @@ H1 { padding: 0; margin:0 0 0.5em 0; font-size:2.2em; }
 </style>
 <script type="text/javascript">
 function foc(){
-  document.getElementById("tid").focus();
+  document.getElementById("userText").focus();
 }
 onload = foc;
 </script>
@@ -53,14 +53,23 @@ onload = foc;
 <body>
 
 <!-- Load Facebook plugin -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>
+window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '141326332738855',
+    xfbml      : true,
+    version    : 'v2.8'
+  });
+  FB.AppEvents.logPageView();
+};
+(function(d, s, id){
   var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
+  if (d.getElementById(id)) {return;}
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=141326332738855";
+  js.src = "//connect.facebook.net/en_US/sdk.js";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+</script>
 
 <!-- GitHub swatch -->
 <a href="https://github.com/dweekly/fontifier"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
@@ -97,7 +106,7 @@ onload = foc;
   <br />
   <a href="https://twitter.com/share" class="twitter-share-button" data-via="dweekly" data-size="large" data-hashtags="fontify">Tweet</a>
   <br />
-  <div class="fb-like" data-href="http://fonts.weekly.org/" data-send="true" data-width="450" data-show-faces="true"></div>
+  <div class="fb-like" data-href="http://fonts.weekly.org/" data-share="true" data-send="true" data-width="450" data-show-faces="true"></div>
 </div>
 
 

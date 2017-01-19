@@ -1,9 +1,9 @@
 <?php
 
-if($_SERVER['HTTP_HOST'] != 'fonts.dweek.ly'){
+if($_SERVER['HTTP_HOST'] != 'fonts.weekly.org'){
    header("HTTP/1.1 301 Moved Permanently");
-   header("Location: http://fonts.dweek.ly/");
-   die('go to <a href="http://fonts.dweek.ly/">fonts.dweek.ly</a>, plz.');
+   header("Location: http://fonts.weekly.org/");
+   die('go to <a href="http://fonts.weekly.org/">fonts.weekly.org</a>, plz.');
 }
 
 require_once 'bootstrap.php';
@@ -29,8 +29,8 @@ header("Content-type: text/html; charset=utf-8");
 <html>
 <head>
 <title>ᗞᗩᐯIᗞ ᕫᕮᕮKᒪᖻ'ᔕ ᖴᑌN ᖴ〇NTIᖴIᕮᖇ</title>
-<link rel="canonical" href="http://fonts.dweek.ly/" />
-<link type="text/plain" rel="author" href="http://fonts.dweek.ly/humans.txt" />
+<link rel="canonical" href="http://fonts.weekly.org/" />
+<link type="text/plain" rel="author" href="http://fonts.weekly.org/humans.txt" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <style>
 BODY { padding: 0.5em 1em 0 1em; }
@@ -97,7 +97,7 @@ onload = foc;
   <br />
   <a href="https://twitter.com/share" class="twitter-share-button" data-via="dweekly" data-size="large" data-hashtags="fontify">Tweet</a>
   <br />
-  <div class="fb-like" data-href="http://fonts.dweek.ly/" data-send="true" data-width="450" data-show-faces="true"></div>
+  <div class="fb-like" data-href="http://fonts.weekly.org/" data-send="true" data-width="450" data-show-faces="true"></div>
 </div>
 
 
